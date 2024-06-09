@@ -7,13 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProjectApplication implements CommandLineRunner {
 
-	// public final DataSource dataSource;
-
-	// public ProjectApplication(final DataSource dataSource)
-	// {
-	// 	this.dataSource = dataSource;
-	// }
-
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
 	}
