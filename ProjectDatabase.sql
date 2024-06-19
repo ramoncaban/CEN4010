@@ -18,6 +18,23 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+CREATE TABLE book_ratings (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    book_id INTEGER NOT NULL,
+    rating INTEGER NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    comment TEXT
+);
+
+
+CREATE TABLE book_comments (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    book_id INTEGER NOT NULL,
+    comment TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 -- Completed on 2024-05-27 19:57:56
 
 --
