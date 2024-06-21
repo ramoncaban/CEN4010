@@ -5,18 +5,18 @@ CREATE TABLE IF NOT EXISTS "profiles" (
     "username" text NOT NULL,
     "password" text NOT NULL,
     "name" text NOT NULL,
-    "email_address" text NOT NULL,
-    "home_address" text NOT NULL,
+    "emailaddress" text NOT NULL,
+    "homeaddress" text NOT NULL,
     CONSTRAINT "profiles_pkey" PRIMARY KEY ("id")
 );
 
 CREATE TABLE IF NOT EXISTS "creditcards" (
     "id" int8 NOT NULL,
-    "card_type" text NOT NULL,
-    "card_number" text NOT NULL,
-    "expiration_date" text NOT NULL,
+    "cardtype" text NOT NULL,
+    "cardnumber" text NOT NULL,
+    "expirationdate" text NOT NULL,
     "cvv" int4 NOT NULL,
-    "card_owner" text NOT NULL
+    "cardowner" text NOT NULL
 );
 
 --Avid
