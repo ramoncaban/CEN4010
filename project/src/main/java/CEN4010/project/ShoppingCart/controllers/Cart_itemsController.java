@@ -18,7 +18,7 @@ public class Cart_itemsController {
 
   @Autowired
   
-    private Cart_itemService cart_itemService;
+    private final Cart_itemService cart_itemService;
 
     public Cart_itemsController(Cart_itemService cart_itemService) {
       this.cart_itemService = cart_itemService;
