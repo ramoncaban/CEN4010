@@ -1,11 +1,12 @@
 package CEN4010.project.ShoppingCart.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import CEN4010.project.ShoppingCart.entities.cart_items;
 import CEN4010.project.ShoppingCart.service.Cart_itemService;
@@ -28,7 +29,7 @@ public class Cart_itemsController {
     return cart_itemService.getcart_items();
   }
 
-  @PostMapping
+  @PostMapping("/cartitems")
   public cart_items createCartItem(@RequestBody cart_items cart_items) {
       return cart_itemService.save(cart_items);
   }
