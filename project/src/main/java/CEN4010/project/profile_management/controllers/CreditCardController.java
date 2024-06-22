@@ -1,5 +1,11 @@
 package CEN4010.project.profile_management.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import CEN4010.project.profile_management.domain.dto.CreditCardDto;
@@ -18,21 +24,21 @@ public class CreditCardController {
         this.creditCardMapper = creditCardMapper;
     }
 
-    // @GetMapping(path = "/profile/{username}")
-    // public ResponseEntity<CreditCardDto> getProfile(@PathVariable String username) {
-    //     CreditCardEntity creditCardEntity = creditCardService.getProfileUsername(username);
-    //     if (profileEntity == null) {
-    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //     }
-    //     return new ResponseEntity<>(profileMapper.mapTo(profileEntity), HttpStatus.OK);
-    // }
+    @GetMapping(path = "/creditcard/{username}")
+    public ResponseEntity<CreditCardDto> getCreditCard(@PathVariable String creditCardNumber) {
+        CreditCardEntity creditCardEntity = creditCardService.getCreditCard(creditCardNumber);
+        if (creditCardEntity == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(creditCardMapper.mapTo(creditCardEntity), HttpStatus.OK);
+    }
 
-    // @PostMapping(path = "/profile")
-    // public ResponseEntity<CreditCardDto> createProfile(@RequestBody ProfileDto profile) {
-    //     ProfileEntity profileEntity = profileMapper.mapFrom(profile);
-    //     ProfileEntity savedProfile =  profileService.createProfile(profileEntity);
-    //     return new ResponseEntity<>(profileMapper.mapTo(savedProfile), HttpStatus.CREATED);
-    // }
+    @PostMapping(path = "/creditcard")
+    public ResponseEntity<CreditCardDto> createCreditCard(@RequestBody CreditCardDto creditCard) {
+        CreditCardEntity creditCardEntity = creditCardMapper.mapFrom(creditCard);
+        CreditCardEntity savedCreditCard =  creditCardService.createCreditCard(creditCardEntity);
+        return new ResponseEntity<>(creditCardMapper.mapTo(savedCreditCard), HttpStatus.CREATED);
+    }
 
     // @PutMapping(path = "/profile/{username}")
     // public ResponseEntity<ProfileDto> updateProfile(@PathVariable String username, @RequestBody ProfileDto profile) {
