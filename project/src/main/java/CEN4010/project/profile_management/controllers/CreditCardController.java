@@ -24,7 +24,7 @@ public class CreditCardController {
         this.creditCardMapper = creditCardMapper;
     }
 
-    @GetMapping(path = "/creditcard/{username}")
+    @GetMapping(path = "/creditcard/{creditCardNumber}")
     public ResponseEntity<CreditCardDto> getCreditCard(@PathVariable String creditCardNumber) {
         CreditCardEntity creditCardEntity = creditCardService.getCreditCard(creditCardNumber);
         if (creditCardEntity == null) {
