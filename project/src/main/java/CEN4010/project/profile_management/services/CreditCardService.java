@@ -1,9 +1,9 @@
 package CEN4010.project.profile_management.services;
 
-import CEN4010.project.profile_management.domain.entities.ProfileEntity;
+import CEN4010.project.profile_management.domain.entities.CreditCardEntity;
 
 public interface CreditCardService {
-    ProfileEntity createProfile(ProfileEntity profile);
+    CreditCardEntity createCreditCard(CreditCardEntity creditCard);
 
-    ProfileEntity getProfileUsername(String username);
+    CreditCardEntity getCreditCard(String creditCardNumber);
 }
