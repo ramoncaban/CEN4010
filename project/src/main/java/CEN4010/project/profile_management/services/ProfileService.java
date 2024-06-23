@@ -6,5 +6,7 @@ public interface ProfileService {
 
     
 
-    ProfileEntity creatProfile(ProfileEntity profile);
+    ProfileEntity createProfile(ProfileEntity profile);
+
+    ProfileEntity getProfileUsername(String username);
 }

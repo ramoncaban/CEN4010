@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "creditcards")
-public class CreditCard {
+public class CreditCardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "creditcards_id_seq")
     private int id;

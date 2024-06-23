@@ -16,8 +16,13 @@ public class ProfileServiceImpl implements ProfileService{
     }
 
     @Override
-    public ProfileEntity creatProfile(ProfileEntity profileEntity) {
+    public ProfileEntity createProfile(ProfileEntity profileEntity) {
         return profileRepository.save(profileEntity);
+    }
+
+    @Override
+    public ProfileEntity getProfileUsername(String username) {
+        return profileRepository.findByUsername(username);
     }
 
     
