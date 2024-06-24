@@ -25,6 +25,12 @@ public class ProfileServiceImpl implements ProfileService{
         return profileRepository.findByUsername(username);
     }
 
+    @Override
+    public ProfileEntity updateProfileUsername(String username, ProfileEntity profileEntity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateProfileUsername'");
+    }
+
     
 
 }
