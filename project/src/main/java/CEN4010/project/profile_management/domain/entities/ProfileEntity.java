@@ -1,5 +1,6 @@
 package CEN4010.project.profile_management.domain.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -20,6 +21,8 @@ public class ProfileEntity {
     private String username;
     private String password;
     private String name;
+    @Column(name = "emailaddress")
     private String emailAddress;
+    @Column(name = "homeaddress")
     private String homeAddress;
 }
