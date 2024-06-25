@@ -24,7 +24,7 @@ public class CreditCardEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "creditcards_id_seq")
     private int id;
     private String cardType;
-    private long cardNumber;
+    private String cardNumber;
     private String expirationDate;
     private int cvv;
     @ManyToOne(cascade = CascadeType.ALL)

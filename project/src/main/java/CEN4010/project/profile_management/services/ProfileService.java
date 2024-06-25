@@ -9,4 +9,6 @@ public interface ProfileService {
     ProfileEntity createProfile(ProfileEntity profile);
 
     ProfileEntity getProfileUsername(String username);
+
+    ProfileEntity updateProfileUsername(String username, ProfileEntity profileEntity);
 }
