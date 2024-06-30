@@ -30,6 +30,7 @@ public class BookController {
         return bookService.getTop10SoldBooks();
     }
 
+
     @GetMapping("/GreaterThanEqual")
     public List<Books> getBooksByRating(@RequestParam double rating) {
         return bookService.getBooksByRating(rating);

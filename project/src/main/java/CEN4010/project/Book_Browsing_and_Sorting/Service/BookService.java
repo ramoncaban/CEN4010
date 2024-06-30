@@ -22,14 +22,8 @@ public class BookService {
         return bookRepository.findTop10ByOrderBySoldcopiesDesc();
     }
 
-    public List<Books> getBooksByRating(double rating) {
-        List <Books> greaterThan = bookRepository.findByRatingGreaterThan(rating);
-        List <Books> equalToBooks = bookRepository.findByRating(rating);
-
-        equalToBooks.removeAll(greaterThan);
-        greaterThan.addAll(equalToBooks);
-
-        return greaterThan;
+    public List<Books> getBooksByRating(double rating){
+        return bookRepository.findByRatingGreaterThanEqual(rating);
     }
 
 
