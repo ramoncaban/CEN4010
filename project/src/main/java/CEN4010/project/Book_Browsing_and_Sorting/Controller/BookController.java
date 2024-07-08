@@ -33,7 +33,7 @@ public class BookController {
 
     @GetMapping("/GreaterThanEqual")
     public List<Books> getBooksByRating(@RequestParam double rating) {
-        return bookService.getBooksByRating(rating);
+        return bookService.getBooksByRating(rating); //updated
     }
 
    
