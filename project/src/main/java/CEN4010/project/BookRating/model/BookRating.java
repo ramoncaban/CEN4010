@@ -36,7 +36,6 @@ public class BookRating {
         this.userId = userId;
     }
 
-
     public long getBookId() {
         return bookId;
     }
