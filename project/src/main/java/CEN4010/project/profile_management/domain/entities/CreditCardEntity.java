@@ -1,9 +1,6 @@
 package CEN4010.project.profile_management.domain.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,13 +18,21 @@ import lombok.NoArgsConstructor;
 @Table(name = "creditcards")
 public class CreditCardEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "creditcards_id_seq")
     private int id;
-    private String cardType;
-    private String cardNumber;
-    private String expirationDate;
+    private String cardtype;
+    private String cardnumber;
+    private String expirationdate;
     private int cvv;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id")
-    private ProfileEntity cardOwner;
+    private String cardowner;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private ProfileEntity user;
+
+    public void setUser(ProfileEntity user) {
+        this.user = user;
+    }
+
+    public void setCardowner(String cardowner) {
+        this.cardowner = cardowner;
+    }
 }

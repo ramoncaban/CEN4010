@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreditCardDto {
     private int id;
-    private String cardType;
-    private String cardNumber;
-    private String expirationDate;
+    private String cardtype;
+    private String cardnumber;
+    private String expirationdate;
     private int cvv;
-    private String cardOwner;
+    private String cardowner;
+    private int user_id;
 }
