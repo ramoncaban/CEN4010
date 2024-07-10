@@ -36,7 +36,7 @@ public class CreditCardController {
         return new ResponseEntity<>(creditCardMapper.mapTo(creditCardEntity), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/user/{username}/creditcard")
+    @PostMapping(path = "/{username}/creditcard")
     public ResponseEntity<CreditCardDto> createCreditCard(@PathVariable String username, @RequestBody CreditCardDto creditCard) {
         ProfileEntity profileEntity = profileService.getProfileUsername(username);
         if (profileEntity == null) {
