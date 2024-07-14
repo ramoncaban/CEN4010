@@ -11,7 +11,8 @@ public interface BookRepository extends JpaRepository <Books,Long> {
     List <Books> findByGenre(String genre);
     List <Books> findTop10ByOrderBySoldcopiesDesc();
     List <Books> findByRatingGreaterThanEqual(double rating); //Sorting by rating
+    List <Books> findByPublisher(String publisher);
+   
 
-    
 }
 
