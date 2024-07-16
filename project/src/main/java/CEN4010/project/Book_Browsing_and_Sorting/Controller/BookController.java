@@ -40,10 +40,10 @@ public class BookController {
     }
 
     @PutMapping("/DiscountByPublisher")
-    public ResponseEntity<Void> discountByPrice(@RequestParam String publisher, double discount){
+    public ResponseEntity<String> discountByPrice(@RequestParam String publisher, double discount){
 
         bookService.discountByPublisher(publisher, discount);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Discount Applied Successfully");
     }
     
     
