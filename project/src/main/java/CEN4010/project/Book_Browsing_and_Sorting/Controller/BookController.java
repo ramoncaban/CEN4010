@@ -18,7 +18,7 @@ public class BookController {
     
     @Autowired
     private BookService bookService;
-
+ 
     
     @GetMapping("/books")
     public List<Books> getBooksByGenre(@RequestParam String genre){
@@ -29,6 +29,17 @@ public class BookController {
     public List<Books> getTop10SoldBooks(){
         return bookService.getTop10SoldBooks();
     }
+
+
+    @GetMapping("/GreaterThanEqual")
+    public List<Books> getBooksByRating(@RequestParam double rating) {
+        return bookService.getBooksByRating(rating); //updated
+    }
+
+   
+    
+    
+    
     
     
 

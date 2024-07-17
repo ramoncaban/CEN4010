@@ -22,9 +22,9 @@ public class BookService {
         return bookRepository.findTop10ByOrderBySoldcopiesDesc();
     }
 
-    
-   
- 
+    public List<Books> getBooksByRating(double rating){
+        return bookRepository.findByRatingGreaterThanEqual(rating);
+    }
 
-    
+
 }
