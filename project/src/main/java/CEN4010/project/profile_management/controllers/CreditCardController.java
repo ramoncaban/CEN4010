@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import CEN4010.project.profile_management.domain.dto.CreditCardDto;
 import CEN4010.project.profile_management.domain.entities.CreditCardEntity;
+import CEN4010.project.profile_management.domain.entities.ProfileEntity;
 import CEN4010.project.profile_management.mappers.Mapper;
 import CEN4010.project.profile_management.services.CreditCardService;
+import CEN4010.project.profile_management.services.ProfileService;
 
 @RestController
 public class CreditCardController {
     private final CreditCardService creditCardService;
-
+    private final ProfileService profileService;
     private final Mapper<CreditCardEntity, CreditCardDto> creditCardMapper;
 
-    public CreditCardController(CreditCardService creditCardService, Mapper<CreditCardEntity, CreditCardDto> creditCardMapper) {
+    public CreditCardController(CreditCardService creditCardService, ProfileService profileService, Mapper<CreditCardEntity, CreditCardDto> creditCardMapper) {
         this.creditCardService = creditCardService;
+        this.profileService = profileService;
         this.creditCardMapper = creditCardMapper;
     }
 
@@ -33,20 +36,19 @@ public class CreditCardController {
         return new ResponseEntity<>(creditCardMapper.mapTo(creditCardEntity), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/creditcard")
-    public ResponseEntity<CreditCardDto> createCreditCard(@RequestBody CreditCardDto creditCard) {
+    @PostMapping(path = "/{username}/creditcard")
+    public ResponseEntity<CreditCardDto> createCreditCard(@PathVariable String username, @RequestBody CreditCardDto creditCard) {
+        ProfileEntity profileEntity = profileService.getProfileUsername(username);
+        if (profileEntity == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         CreditCardEntity creditCardEntity = creditCardMapper.mapFrom(creditCard);
-        CreditCardEntity savedCreditCard =  creditCardService.createCreditCard(creditCardEntity);
+        creditCardEntity.setUser(profileEntity);
+
+        creditCardEntity.setCardowner(profileEntity.getName());
+        CreditCardEntity savedCreditCard = creditCardService.createCreditCard(username, creditCardEntity);
+
         return new ResponseEntity<>(creditCardMapper.mapTo(savedCreditCard), HttpStatus.CREATED);
     }
 
-    // @PutMapping(path = "/profile/{username}")
-    // public ResponseEntity<ProfileDto> updateProfile(@PathVariable String username, @RequestBody ProfileDto profile) {
-    //     ProfileEntity profileEntity = profileMapper.mapFrom(profile);
-    //     ProfileEntity updatedProfile = profileService.updateProfileUsername(username, profileEntity);
-    //     if (updatedProfile == null) {
-    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //     }
-    //     return new ResponseEntity<>(profileMapper.mapTo(updatedProfile), HttpStatus.OK);
-    // }
 }

@@ -1,5 +1,7 @@
 package CEN4010.project.profile_management.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import CEN4010.project.profile_management.domain.dto.ProfileDto;
+import CEN4010.project.profile_management.domain.entities.CreditCardEntity;
 import CEN4010.project.profile_management.domain.entities.ProfileEntity;
 import CEN4010.project.profile_management.mappers.Mapper;
+import CEN4010.project.profile_management.services.CreditCardService;
 import CEN4010.project.profile_management.services.ProfileService;
 
 
@@ -20,11 +24,12 @@ import CEN4010.project.profile_management.services.ProfileService;
 public class ProfileController {
 
     private final ProfileService profileService;
-
+    private final CreditCardService creditCardService;
     private final Mapper<ProfileEntity, ProfileDto> profileMapper;
 
-    public ProfileController(ProfileService profileService, Mapper<ProfileEntity, ProfileDto> profilMapper) {
+    public ProfileController(ProfileService profileService, CreditCardService creditCardService, Mapper<ProfileEntity, ProfileDto> profilMapper) {
         this.profileService = profileService;
+        this.creditCardService = creditCardService;
         this.profileMapper = profilMapper;
     }
 
@@ -52,12 +57,20 @@ public class ProfileController {
         }
 
         ProfileEntity profileEntity = profileMapper.mapFrom(profile);
-        profileEntity.setEmailAddress(existingProfile.getEmailAddress());
+        profileEntity.setEmail(existingProfile.getEmail());
 
         ProfileEntity updatedProfile = profileService.updateProfileUsername(username, profileEntity);
         if (updatedProfile == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        List<CreditCardEntity> creditCards = creditCardService.getCreditCardsByUsername(username);
+
+        for (CreditCardEntity creditCard : creditCards) {
+            creditCard.setCardowner(updatedProfile.getName());
+            creditCardService.updateCreditCard(creditCard);
+        }
+
         return new ResponseEntity<>(profileMapper.mapTo(updatedProfile), HttpStatus.OK);
     }
 }

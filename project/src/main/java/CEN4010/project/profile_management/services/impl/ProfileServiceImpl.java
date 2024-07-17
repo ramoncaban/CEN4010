@@ -27,10 +27,14 @@ public class ProfileServiceImpl implements ProfileService{
 
     @Override
     public ProfileEntity updateProfileUsername(String username, ProfileEntity profileEntity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateProfileUsername'");
+        ProfileEntity existingProfile = profileRepository.findByUsername(username);
+        if (existingProfile == null) {
+            return null;
+        }
+        existingProfile.setUsername(profileEntity.getUsername());
+        existingProfile.setPassword(profileEntity.getPassword());
+        existingProfile.setName(profileEntity.getName());
+        existingProfile.setAddress(profileEntity.getAddress());
+        return profileRepository.save(existingProfile);
     }
-
-    
-
 }
