@@ -45,4 +45,9 @@ public class BookDetailsController {
                    .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/books/author/{authorId}")
+    public List<Book> getBooksByAuthorId(@PathVariable Long authorId) {
+        return bookService.getBooksByAuthorId(authorId);
+    }
+
 }
