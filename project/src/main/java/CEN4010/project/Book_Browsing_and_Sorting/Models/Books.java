@@ -19,7 +19,7 @@ public class Books {
     private long ISBN;
     private String Description;
     private int soldcopies;
-    private String Publisher;
+    private String publisher;
     
     public long getId() {
         return id;
@@ -94,11 +94,11 @@ public class Books {
     }
 
     public String getPublisher() {
-        return Publisher;
+        return publisher;
     }
 
     public void setPublisher(String publisher) {
-        this.Publisher = publisher;
+        this.publisher = publisher;
     }
 
 

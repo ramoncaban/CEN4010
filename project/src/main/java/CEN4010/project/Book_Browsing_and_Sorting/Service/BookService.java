@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import CEN4010.project.Book_Browsing_and_Sorting.Models.Books;
 import CEN4010.project.Book_Browsing_and_Sorting.Repos.BookRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class BookService {
@@ -24,6 +25,17 @@ public class BookService {
 
     public List<Books> getBooksByRating(double rating){
         return bookRepository.findByRatingGreaterThanEqual(rating);
+    }
+
+    @Transactional
+    public void discountByPublisher(String publisher, double discount){
+        List<Books> books = bookRepository.findByPublisher(publisher);
+        
+        for(Books book: books){
+            double newPrice = book.getPrice() * (1 - discount / 100.0);
+            book.setPrice(newPrice);
+        }
+        bookRepository.saveAll(books);
     }
 
 
